@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GARAGE | Book Service</title>
+    <link rel="stylesheet" href="project_css.css">
+    <link rel="stylesheet" href="nav.css">
+</head>
+<body>
+    <header class="main-nav-bar">
+        <div class="logo">GARAGE<span>.</span></div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="service.html">Services</a>
+            <a href="team.html">Team</a>
+            <a href="contact.html" class="active">Book Now</a>
+        </nav>
+        <div class="auth-buttons">
+            <a href="login.html" class="login-btn">Login</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="content_">
+            <section class="form-section">
+                <form id="bookingForm">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" name="fullName" placeholder="Enter your full name..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="carType">Car Type</label>
+                        <input type="text" id="carType" name="carType" placeholder="Enter your car model..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service">Select Service</label>
+                        <select id="service" name="service" required>
+                            <option value="">Select service</option>
+                            <option value="Oil Change">Oil Change</option>
+                            <option value="Tire Rotation">Tire Rotation</option>
+                            <option value="Brake Service">Brake Service</option>
+                            <option value="Engine Diagnostic">Engine Diagnostic</option>
+                            <option value="Full Wash">Full Wash</option>
+                            <option value="Full Maintenance">Full Maintenance</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date">Select Date</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number..." required>
+                    </div>
+
+                    <button type="submit" class="btn-confirm">Confirm Booking</button>
+                </form>
+            </section>
+
+            <section class="image-section">
+                <img src="https://cdn.prod.website-files.com/698ef3567c7a09b473a1fac2/6996a35889580ef52c9ddf95_Services%20Image.webp" alt="Car Service">
+            </section>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo">GARAGE<span>.</span></div>
+                <p>We provide high-end maintenance and professional care for your vehicle using the latest technologies. Your journey, our priority.</p>
+            </div>
+            <div class="footer-links-group">
+                <h4>Quick Links</h4>
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="service.html">Services</a>
+                <a href="team.html">Our Team</a>
+            </div>
+            <div class="footer-links-group">
+                <h4>Support</h4>
+                <a href="contact.html">Book Now</a>
+                <a href="#">FAQ</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+            <div class="footer-links-group">
+                <h4>Contact Info</h4>
+                <a href="tel:+02552635624">📞 (+025) 5263-5624</a>
+                <a href="mailto:info@garage.com">✉️ info@garage.com</a>
+                <p style="color: #a0a0a0; font-size: 14px;">📍 123 Car Street, NY</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 GARAGE AutoCare. All Rights Reserved.</p>
+            <div class="social-links">
+                <a href="#">FB</a>
+                <a href="#">IG</a>
+                <a href="#">TW</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="auth.js"></script>
+    <script>
+        const dateInput = document.getElementById("date");
+        if (dateInput) dateInput.setAttribute("min", new Date().toISOString().split("T")[0]);
+
+        document.getElementById("bookingForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const fullName = document.getElementById("fullName").value.trim();
+            const carType = document.getElementById("carType").value.trim();
+            const service = document.getElementById("service").value.trim();
+            const date = document.getElementById("date").value;
+            const phone = document.getElementById("phone").value.trim();
+
+            if (!fullName || !carType || !service || !date || !phone) {
+                alert("Please complete all booking fields.");
+                return;
+            }
+
+            if (!/^[0-9+\-\s()]{7,20}$/.test(phone)) {
+                alert("Please enter a valid phone number.");
+                return;
+            }
+
+            let orders = [];
+            try {
+                const parsed = JSON.parse(localStorage.getItem("garageOrders") || "[]");
+                orders = Array.isArray(parsed) ? parsed : [];
+            } catch (error) {
+                orders = [];
+            }
+
+            const order = {
+                id: Date.now(),
+                name: fullName,
+                car: carType,
+                service: service,
+                date: date,
+                phone: phone,
+                status: "pending",
+                createdBy: localStorage.getItem("garageCurrentUser") || fullName,
+                createdAt: new Date().toISOString()
+            };
+
+            orders.push(order);
+            localStorage.setItem("garageOrders", JSON.stringify(orders));
+            alert("Booking confirmed successfully.");
+            window.location.href = "my_orders.html";
+        });
+    </script>
+</body>
+</html>

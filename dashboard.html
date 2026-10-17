@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GARAGE | User Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <div class="logo-icon">G</div>
+            <div>
+                <strong>GARAGE</strong>
+                <div class="muted">User Space</div>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <button type="button" class="nav-item active" onclick="changePage('dashboard', this)">Overview</button>
+            <button type="button" class="nav-item" onclick="changePage('orders', this)">My Orders</button>
+            <button type="button" class="nav-item" onclick="changePage('settings', this)">Settings</button>
+        </nav>
+
+        <div class="sidebar-footer">
+            <small>Need help?</small>
+            <a href="contact.html">Book a service</a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <h1 class="topbar-title">Customer Dashboard</h1>
+            <div class="topbar-actions">
+                <span id="current-user" class="user-pill">Guest</span>
+                <button type="button" class="btn ghost" onclick="logout()">Logout</button>
+            </div>
+        </header>
+
+        <section class="page active" id="dashboard-page">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <p>Total Orders</p>
+                    <strong id="count-total">0</strong>
+                </div>
+                <div class="stat-card">
+                    <p>Pending</p>
+                    <strong id="count-pending">0</strong>
+                </div>
+                <div class="stat-card">
+                    <p>Completed</p>
+                    <strong id="count-completed">0</strong>
+                </div>
+                <div class="stat-card">
+                    <p>Cancelled</p>
+                    <strong id="count-cancelled">0</strong>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Recent Orders</h2>
+                    <button type="button" class="btn" onclick="goToBooking()">New Booking</button>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Service</th>
+                                <th>Car</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recent-orders-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="page" id="orders-page">
+            <div class="card">
+                <div class="card-header">
+                    <h2>All Orders</h2>
+                    <div class="filters">
+                        <input id="orders-search" type="text" placeholder="Search name, phone, service..." oninput="renderOrdersTable()">
+                        <select id="orders-status-filter" onchange="renderOrdersTable()">
+                            <option value="">All Status</option>
+                            <option value="pending">Pending</option>
+                            <option value="done">Completed</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Service</th>
+                                <th>Car</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orders-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="page" id="settings-page">
+            <div class="card settings">
+                <h2>Quick Settings</h2>
+                <p class="muted">Manage your account and order history.</p>
+                <div class="settings-actions">
+                    <button type="button" class="btn" onclick="goToBooking()">Create New Booking</button>
+                    <button type="button" class="btn danger" onclick="clearOrderHistory()">Clear My Orders</button>
+                    <button type="button" class="btn ghost" onclick="logout()">Sign Out</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

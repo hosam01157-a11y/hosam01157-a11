@@ -1,0 +1,229 @@
+*{
+    box-sizing: border-box;
+    padding : 0;
+    margin : 0;
+}
+body {
+    background-color: #000000; 
+   margin: 0%;
+   padding: 0%;
+   width: 100%;
+   height: 100%;
+}
+
+
+.header
+{
+    height: 200px;
+}
+
+.picourteam {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    overflow: hidden;
+    margin-top: 80px; /* Offset for the fixed nav */
+}
+
+.picourteam img {
+    width: 100%;
+    height: 100%; 
+    display: block;
+    object-fit: cover;
+}
+
+.our {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white; 
+    margin: 0;
+    text-align: center;
+    width: 100%;
+}
+
+.our h2 {
+    font-size: 5vw;
+    font-weight: bold;
+    font-family: 'Arial Black', Gadget, sans-serif;
+    text-transform: uppercase;
+    text-shadow: 0px 4px 15px rgba(0, 0, 0, 0.8);
+    margin: 0;
+}
+
+#span-color {
+    color: #e30000;
+    font-style: italic;
+}
+
+pre {
+    color: white;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: 'Inter', sans-serif;
+    font-style: italic;
+    border-top: #e30000 solid 4px;
+    border-bottom: #e30000 solid 4px;
+    padding: 30px 0px;
+    margin: 60px auto;
+    width: 80%;
+    max-width: 800px;
+    white-space: pre-wrap;
+    background: rgba(26, 26, 26, 0.5);
+    border-radius: 8px;
+}  
+
+
+.team-grid {
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    justify-items: center;
+    gap: 30px; 
+    margin: 50px 0px 80px 0px; 
+}
+
+.hazem-wrapper {
+     display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+#hazem-ali {
+    position: relative;
+    z-index: 10;
+    width: 450px;      /* نفس حجم باقي الكروت */
+    height: 400px;
+
+
+}
+
+#hazem-ali img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+  
+.teamcard {
+    width: 450px;
+    background-color: #000000; 
+    overflow: hidden; 
+    text-align: center; 
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3); 
+    position: relative;
+    transition: 0.3ms;
+    /* height: 1115px;  */
+    
+    
+}
+
+.teamcard img {
+    object-fit: cover; 
+    display: block;
+    height: 100%; 
+  width: 100%;
+    transition: 0.3s;
+    
+}
+
+
+.info-box {
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8); 
+    background-color: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.8),
+        rgba(0, 0, 0, 0.5),
+        transparent
+    );
+    color: #000;
+    padding: 15px;
+    border-radius: 5px;
+    width: 80%;
+    opacity: 0; 
+    visibility: hidden;
+    transition: all 0.3s ease; 
+    pointer-events: none; 
+    z-index: 10;
+}
+
+.teamcard:hover .info-box {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+
+}
+
+.teamcard:hover{
+
+translate: 0 -40px;
+
+}
+.teamcard:hover img {
+    filter: blur(5px) brightness(50%);
+    transition: 0.3s;
+
+}
+
+
+
+
+.teamcard h3 {
+    margin: 15px 0 5px 0;
+    font-size: 40px;
+}
+
+.teamcard h6 {
+    margin: 0 0 15px 0;
+    font-size: 30px;
+    color: #fff9f9;
+} 
+
+
+
+.footer
+{
+
+    height: 200px;
+}
+
+@media (max-width: 1500px) {
+    .teamcard,
+    #hazem-ali {
+        width: 100%;
+        max-width: 420px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .team-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        padding: 0 16px;
+    }
+
+    .teamcard h3 {
+        font-size: 30px;
+    }
+
+    .teamcard h6 {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 760px) {
+    pre {
+        font-size: 30px;
+        width: 92%;
+    }
+
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hazem-wrapper {
+        padding: 0 16px;
+    }
+}

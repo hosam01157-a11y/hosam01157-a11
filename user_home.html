@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GARAGE | Welcome Back</title>
+    <link rel="stylesheet" href="pro.css">
+    <link rel="stylesheet" href="nav.css">
+</head>
+<body>
+    <header class="main-nav-bar">
+        <div class="logo">GARAGE<span>.</span></div>
+        <nav>
+            <a href="user_home.html" class="active">Home</a>
+            <a href="service.html">Services</a>
+            <a href="contact.html">Book Now</a>
+            <a href="my_orders.html">My Orders</a>
+        </nav>
+        <div class="user-area">
+            <span class="user-name" id="user-home-name">Customer</span>
+            <div class="user-avatar">C</div>
+            <a href="#" class="logout-btn" onclick="logoutUser(event)">Logout</a>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="hero-overlay">
+            <div class="hero-text">
+                <h4>Your Car, Our Priority</h4>
+                <h1>WELCOME TO YOUR <br> GARAGE SPACE</h1>
+                <p>Book services, follow order updates, and keep your vehicle in top condition.</p>
+                <button class="action-btn" onclick="location.href='contact.html'">BOOK A SERVICE</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section">
+        <div class="info-card">
+            <img src="https://images.pexels.com/photos/190574/pexels-photo-190574.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Repair">
+            <h2>Expert Diagnostics</h2>
+            <p>Advanced diagnostic checks to catch issues quickly and keep you on the road safely.</p>
+        </div>
+        <div class="info-card">
+            <img src="https://images.pexels.com/photos/4489749/pexels-photo-4489749.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Performance">
+            <h2>Performance Tuning</h2>
+            <p>Professional tuning and maintenance that improves engine reliability and efficiency.</p>
+        </div>
+    </section>
+
+    <section class="track-section">
+        <div class="track-container">
+            <div class="track-image">
+                <img src="https://images.pexels.com/photos/2244746/pexels-photo-2244746.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Mechanic">
+            </div>
+            <div class="track-content">
+                <h4 class="red-subtitle">SMART TRACKING</h4>
+                <h1 class="main-title">Track Every Service Request</h1>
+
+                <div class="feature-item">
+                    <div class="feature-icon">1</div>
+                    <div class="feature-text">
+                        <h3>Real-time Order Status</h3>
+                        <p>Follow your booking from pending to completed.</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">2</div>
+                    <div class="feature-text">
+                        <h3>Support When You Need It</h3>
+                        <p>Our team is ready to assist with any request.</p>
+                    </div>
+                </div>
+
+                <div class="track-footer">
+                    <button class="view-btn" onclick="location.href='my_orders.html'">VIEW MY ORDERS</button>
+                    <div class="contact-info">
+                        <div>
+                            <span>Phone Number</span>
+                            <strong>(+025) 5263-5624</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo">GARAGE<span>.</span></div>
+                <p>We provide high-end maintenance and professional care for your vehicle using the latest technologies. Your journey, our priority.</p>
+            </div>
+            <div class="footer-links-group">
+                <h4>Quick Links</h4>
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="service.html">Services</a>
+                <a href="team.html">Our Team</a>
+            </div>
+            <div class="footer-links-group">
+                <h4>Support</h4>
+                <a href="contact.html">Book Now</a>
+                <a href="#">FAQ</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+            <div class="footer-links-group">
+                <h4>Contact Info</h4>
+                <a href="tel:+02552635624">📞 (+025) 5263-5624</a>
+                <a href="mailto:info@garage.com">✉️ info@garage.com</a>
+                <p style="color: #a0a0a0; font-size: 14px;">📍 123 Car Street, NY</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 GARAGE AutoCare. All Rights Reserved.</p>
+            <div class="social-links">
+                <a href="#">FB</a>
+                <a href="#">IG</a>
+                <a href="#">TW</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="auth.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const name = localStorage.getItem("garageCurrentUser") || "Customer";
+            const short = name.trim().slice(0, 1).toUpperCase() || "C";
+
+            const label = document.getElementById("user-home-name");
+            if (label) label.textContent = name;
+
+            const avatar = document.querySelector(".user-avatar");
+            if (avatar) avatar.textContent = short;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css">
+    <title>GARAGE | Secure Login</title>
+</head>
+<body>
+    <div class="login-wrapper">
+        <div class="container">
+            <div class="brand-logo">GARAGE<span>.</span></div>
+            <p class="subtitle">Secure portal for staff and clients</p>
+
+            <div class="input-container">
+                <div class="input-field">
+                    <input type="text" id="username" placeholder="Username / Email">
+                </div>
+                <div class="input-field">
+                    <input type="password" id="password" placeholder="Password">
+                </div>
+                <button class="login-btn" onclick="login()">Access Account</button>
+            </div>
+
+            <p id="message"></p>
+            <p class="subtitle">Demo: admin/admin - user/user - habiba/2007</p>
+            <a href="index.html" class="back-home">Back to Homepage</a>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+    <script src="login.js"></script>
+</body>
+</html>

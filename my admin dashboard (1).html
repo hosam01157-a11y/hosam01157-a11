@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GARAGE | Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <div class="logo-icon">G</div>
+            <div>
+                <div class="logo-text">GARAGE Admin</div>
+                <small>Operations Center</small>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <button type="button" class="nav-item active" onclick="showPage('dashboard', this)">Dashboard</button>
+            <button type="button" class="nav-item" onclick="showPage('requests', this)">Requests</button>
+            <button type="button" class="nav-item" onclick="showPage('users', this)">Customers</button>
+            <button type="button" class="nav-item" onclick="showPage('settings', this)">Settings</button>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="avatar">A</div>
+            <div>
+                <strong id="admin-label">Admin</strong>
+                <small>admin@garage.local</small>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main">
+        <header class="main-header">
+            <div>
+                <h1>Admin Dashboard</h1>
+                <p>Track requests, customers, and order status in real time.</p>
+            </div>
+            <div class="header-actions">
+                <button type="button" class="btn" onclick="goToBooking()">Create Booking</button>
+                <button type="button" class="btn ghost" onclick="logoutAdmin()">Logout</button>
+            </div>
+        </header>
+
+        <section class="page active" id="dashboard-page">
+            <div class="stats-grid">
+                <article class="stat-card">
+                    <span>Total Orders</span>
+                    <strong id="stat-total">0</strong>
+                </article>
+                <article class="stat-card">
+                    <span>Pending</span>
+                    <strong id="stat-pending">0</strong>
+                </article>
+                <article class="stat-card">
+                    <span>Done</span>
+                    <strong id="stat-done">0</strong>
+                </article>
+                <article class="stat-card">
+                    <span>Cancelled</span>
+                    <strong id="stat-cancelled">0</strong>
+                </article>
+            </div>
+
+            <section class="card">
+                <div class="card-header">
+                    <h2>Recent Requests</h2>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Service</th>
+                                <th>Car</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recent-orders-body"></tbody>
+                    </table>
+                </div>
+            </section>
+        </section>
+
+        <section class="page" id="requests-page">
+            <section class="card">
+                <div class="card-header requests-head">
+                    <h2>All Service Requests</h2>
+                    <div class="filters">
+                        <input id="admin-search" type="text" placeholder="Search by name, phone, car..." oninput="renderRequestsTable()">
+                        <select id="admin-status-filter" onchange="renderRequestsTable()">
+                            <option value="">All status</option>
+                            <option value="pending">Pending</option>
+                            <option value="done">Done</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                        <select id="admin-service-filter" onchange="renderRequestsTable()">
+                            <option value="">All services</option>
+                            <option value="oil change">Oil Change</option>
+                            <option value="tire rotation">Tire Rotation</option>
+                            <option value="brake service">Brake Service</option>
+                            <option value="engine diagnostic">Engine Diagnostic</option>
+                            <option value="full wash">Full Wash</option>
+                            <option value="full maintenance">Full Maintenance</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Service</th>
+                                <th>Car</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="all-orders-body"></tbody>
+                    </table>
+                </div>
+            </section>
+        </section>
+
+        <section class="page" id="users-page">
+            <section class="card">
+                <div class="card-header">
+                    <h2>Customer Overview</h2>
+                </div>
+                <div class="users-grid" id="users-grid"></div>
+            </section>
+        </section>
+
+        <section class="page" id="settings-page">
+            <section class="card settings-card">
+                <h2>System Actions</h2>
+                <p>Use these tools carefully while managing live booking data.</p>
+                <div class="settings-actions">
+                    <button type="button" class="btn" onclick="goToBooking()">Open Booking Form</button>
+                    <button type="button" class="btn danger" onclick="clearAllOrders()">Clear All Orders</button>
+                    <button type="button" class="btn ghost" onclick="logoutAdmin()">Sign Out</button>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <script src="admin-dashboard.js"></script>
+</body>
+</html>
